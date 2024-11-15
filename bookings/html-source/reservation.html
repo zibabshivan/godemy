@@ -10,6 +10,7 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.3.4/dist/css/datepicker-bs5.min.css">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/notie/dist/notie.min.css">
 
     <style>
         .my-footer {
@@ -25,8 +26,8 @@
             max-width: 50%;
         }
 
-        .redText {
-            color: red;
+        .notie-container {
+            box-shadow: none;
         }
     </style>
 </head>
@@ -70,49 +71,6 @@
         </div>
     </nav>
 
-    <div id="main-carousel" class="carousel slide carousel-fade">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#main-carousel" data-bs-slide-to="0" class="active"
-                aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#main-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#main-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
-
-
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="static/images/woman-laptop.png" class="d-block w-100" alt="Woman and  laptop">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>First slide label</h5>
-                    <p>Some representative placeholder content for the second slide.</p>
-                </div>
-
-            </div>
-            <div class="carousel-item">
-                <img src="static/images/tray.png" class="d-block w-100" alt="Tray and coffee">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Second slide label</h5>
-                    <p>Some representative placeholder content for the second slide.</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="static/images/outside.png" class="d-block w-100" alt="Outside">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Third slide label</h5>
-                    <p>Some representative placeholder content for the second slide.</p>
-                </div>
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#main-carousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#main-carousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-
     <div class="container">
         <div class="row">
             <div class="col-md-3">
@@ -125,13 +83,11 @@
                         <div class="col">
                             <div class="form-row" id="reservation-dates">
                                 <div class="col">
-                                    <input required class="form-control" type="text" name="start"
-                                        placeholder="Arrival">
+                                    <input required class="form-control" type="text" name="start" placeholder="Arrival">
                                 </div>
 
                                 <div class="col">
-                                    <input required class="form-control" type="text" name="end"
-                                        placeholder="Departure">
+                                    <input required class="form-control" type="text" name="end" placeholder="Departure">
                                 </div>
                             </div>
                         </div>
@@ -181,6 +137,7 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.3.4/dist/js/datepicker-full.min.js"></script>
+    <script src="https://unpkg.com/notie"></script>
 
     <script>
         console.log("i'm printing this from javascript");
@@ -209,20 +166,20 @@
 
 
         document.getElementById("colorButton").addEventListener("click", function () {
-            let myEl = document.getElementById("myParagraph")
-
-            if (myEl.classList.contains("redText")) {
-                myEl.classList.remove("redText")
-            } else {
-                myEl.classList.add("redText")
-            }
+            notify("You Did It...", "warning")
         })
 
         const elem = document.getElementById('reservation-dates');
         const rangepicker = new DateRangePicker(elem, {
-            format:"yyyy-mm-dd",
+            format: "yyyy-mm-dd",
         });
 
+        function notify(msg, msgType) {
+            notie.alert({
+                type: msgType,
+                text: msg,
+            })
+        }
     </script>
 </body>
 
